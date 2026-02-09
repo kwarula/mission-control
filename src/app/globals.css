@@ -1,0 +1,92 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: #0f0f12;
+    --foreground: #e4e4e7;
+    --card: #18181b;
+    --card-hover: #1f1f23;
+    --border: #27272a;
+    --muted: #71717a;
+    --accent: #4c6ef5;
+    --accent-hover: #5c7cfa;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+  }
+
+  * {
+    border-color: var(--border);
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-[#18181b]/80 backdrop-blur-xl border border-[#27272a] rounded-xl;
+  }
+
+  .glass-card-hover {
+    @apply glass-card hover:bg-[#1f1f23]/80 hover:border-[#3f3f46] transition-all duration-200;
+  }
+
+  .glow-border {
+    box-shadow: 0 0 0 1px rgba(76, 110, 245, 0.1),
+      0 0 20px -5px rgba(76, 110, 245, 0.15);
+  }
+
+  .status-dot {
+    @apply w-2 h-2 rounded-full;
+  }
+
+  .status-dot-success {
+    @apply status-dot bg-emerald-400 shadow-[0_0_6px_rgba(52,211,153,0.5)];
+  }
+
+  .status-dot-error {
+    @apply status-dot bg-red-400 shadow-[0_0_6px_rgba(248,113,113,0.5)];
+  }
+
+  .status-dot-pending {
+    @apply status-dot bg-amber-400 shadow-[0_0_6px_rgba(251,191,36,0.5)] animate-pulse;
+  }
+
+  .status-dot-info {
+    @apply status-dot bg-blue-400 shadow-[0_0_6px_rgba(96,165,250,0.5)];
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3f3f46;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #52525b;
+}
+
+/* Smooth transitions */
+.nav-link {
+  @apply relative px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200;
+}
+
+.nav-link.active {
+  @apply text-white bg-brand-600/20;
+}
+
+.nav-link.active::before {
+  content: "";
+  @apply absolute left-0 top-1/2 -translate-y-1/2 w-0.5 h-4 bg-brand-500 rounded-full;
+}
